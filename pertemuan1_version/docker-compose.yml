@@ -1,0 +1,2 @@
+# Mendefinisikan version dari file docker compose configuration (bukan versi dockernya, ini versi file configuratoin dockernya)
+version: "3.8"

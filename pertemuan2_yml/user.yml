@@ -1,0 +1,21 @@
+# YML merupakan sebuah file yang biasnaya digunakan untuk menulis configuration
+# Sintaks nya mirip dengan JSON namun tidak memiliki tanda kurung kurawal dan memakai tab sama seperti Python
+# Untuk tipe data string di YML tidak wajib ditulis dengna double qoutes (petik 2) bisa langsung value nya aja
+firstName: Mathius
+lastName: Kormasela
+age: 20
+# Define array di YML
+hobbies: 
+  - Coding
+  - Reading
+  - Listening Music
+# Define nested object
+address: 
+  street: Jl. Kalimalang
+  postalCode: 19293
+# Defined Array of Object
+wallet: 
+  - type: cash
+    amount: 1000
+  - type: debit
+    amount: 50000

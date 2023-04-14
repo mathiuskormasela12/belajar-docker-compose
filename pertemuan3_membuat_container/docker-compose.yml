@@ -1,0 +1,23 @@
+version: "3.8"
+
+# Atribute service merupakan sebuah
+# atribute yang digunakan untuk 
+# mendefinisikan container-container 
+# yang akan di buat
+services:
+  # nama key dari container kita, harus unik, 
+  # namun biasanya mas Eko Programmer Zaman Now 
+  # akan menyamakan value nya dengan nama 
+  # containernya guna untuk mempermudah ketika 
+  # melakukan pemanggilan container.
+  # Keymnya ini boldeh lebih dari satu
+  # Jika kita memang ingin membuat lebih dari
+  # satu container.
+  nginx-example:
+    # Mendifinisikan nama container yang akan dibuat
+    container_name: nginx-example
+    # Mendefinisikan image yg akan digunakna
+    image: nginx:latest
+  nginx-example2:
+    container_name: nginx-example2
+    image: nginx:latest

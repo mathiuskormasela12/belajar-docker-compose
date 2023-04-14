@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  nginx-port1:
+    container_name: nginx-port1
+    image: nginx:latest
+    # Mendefiniskan port (Long way)
+    # Tapi cara ini lebih disarankan
+    # Karena membuat confignya lebih jelas
+    ports:
+        # Menentukan protocol yg akan digunakan
+      - protocol: tcp
+        # Menentukan port yang akan di buka di komputer local kita
+        published: 3000
+        # Port yg berjalan dalam container
+        target: 80
+  nginx-port2:
+    container_name: nginx-port2
+    image: nginx:latest
+    # Mendefinisikan port (Short Way)
+    # Lebih singkat, namun tidak di rekomendasikan menggunakna cara ini
+    # Karena penulisannya tidak jelas
+    ports:
+        # portlKomputerLocal:portContainer
+      - "3001:80"
