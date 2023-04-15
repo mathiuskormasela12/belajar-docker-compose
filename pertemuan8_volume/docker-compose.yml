@@ -1,0 +1,41 @@
+version: "3.8"
+
+services: 
+  mongo-example:
+    container_name: mongo-example
+    image: mongo:latest
+    ports:
+      - protocol: tcp
+        published: 4000
+        target: 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: example1
+    volumes:
+      # namaVolume:destination
+      - mongo-data1:/data/db
+
+  mongo-example1:
+    container_name: mongo-example1
+    image: mongo:latest
+    ports:
+      - protocol: tcp
+        published: 8000
+        target: 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root1
+      MONGO_INITDB_ROOT_PASSWORD: root1
+      MONGO_INITDB_DATABASE: example1
+    volumes: 
+      - type: volume
+        source: mongo-data2
+        target: "/data/db"
+        read_only: false
+  
+# Membuat volume baru (harus sejajar dengan services)
+volumes:
+  mongo-data1:
+    name: mongo-data1
+  mongo-data2:
+    name: mongo-data2
