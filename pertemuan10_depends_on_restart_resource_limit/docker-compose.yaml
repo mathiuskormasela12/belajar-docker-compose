@@ -1,0 +1,65 @@
+version: "3.8"
+
+volumes:
+  database-vol:
+    name: database-vol
+
+networks:
+  my-network:
+    name: my-network
+    driver: bridge
+
+services:
+  mongodb-container:
+    container_name: mongodb-container
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: pan
+    networks:
+      - my-network
+    ports:
+      - protocol: tcp
+        published: 27017
+        target: 27017
+    volumes:
+      - type: volume
+        source: database-vol
+        target: /data/db
+    deploy:
+      resources: 
+        # Mendifinikan resource minimal
+        reservations: 
+          cpus: "0.5"
+          memory: "50M"
+        # Mendefinisikan resource maksimal
+        limits:
+          cpus: "0.5"
+          memory: "100mb"
+  
+  mongo-express-container:
+    container_name: mongo-express-container
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongodb-container
+    networks:
+      - my-network
+    ports:
+      - protocol: tcp
+        published: 8000
+        target: 8081
+    # Untuk membuat container mongo-express-container
+    # Di jalankan setelah container mongodb-container berhasil di jalankan
+    depends_on: 
+      - mongodb-container
+    # Untuk melakukan restart container
+    # Option:
+    # - no => container nya tidak akan di restart
+    # - always => container nya akan selalu di restart ketika containernya berhenti
+    # - on-failure=> containernya akan di resart jika containernya error
+    # unless-stopped => containernya akan selalu di restart, sebelum containernya di matikan secara manual
+    # bahkan ketia docker nya di matikan & di jalankan lagi, maka containernya akan langsung di jalankan secara otomatis
+    restart: always
