@@ -1,0 +1,38 @@
+version: "3.8"
+
+services: 
+  mongodb-example1:
+    container_name: mongodb-example1
+    image: mongo:latest
+    ports:
+      - "3000:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: example1
+    # Mendefinsikan bind mountd (Short Syntax)
+    volumes:
+        # source:destination
+      - "./backup:/data/db"
+    
+  mongodb-example2:
+    container_name: mongodb-example2
+    image: mongo:latest 
+    ports:
+      - protocol: tcp
+        published: 3001
+        target: 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root1
+      MONGO_INITDB_ROOT_PASSWORD: root1
+      MONGO_INITDB_DATABASE: example1
+     # Mendefinsikan bind mountd (Long Syntax)
+    volumes: 
+        # Define type nya, bisa bind atau volume
+      - type: bind
+        # Define source nya(folder dri local kompyter kita / volume)
+        source: "./backup2"
+        # define folder di container nya
+        target: "/data/db"
+        # define read-only
+        read_only: false
