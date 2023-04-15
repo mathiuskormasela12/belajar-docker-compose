@@ -1,0 +1,23 @@
+version: "3.8"
+
+# Membuat network baru
+networks:
+  network-example:
+    name: network-example
+    driver: bridge
+
+services:
+  mongodb-example:
+    container_name: mongodb-example
+    image: mongo:latest
+    ports:
+      - protocol: tcp
+        published: 3000
+        target: 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: eunha
+      MONGO_INITDB_ROOT_PASSWORD: eunha
+      MONGO_INITDB_DATABASE: gfriend
+    # Memnghubungkan network
+    networks: 
+      - network-example
