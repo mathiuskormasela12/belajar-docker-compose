@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  mongodb-example:
+    container_name: mongodb-example
+    image: mongo:latest
+    ports:
+      - protocol: tcp
+        published: 3000
+        target: 27017
+    # Mendefinisikan environment variables
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: emangiyajhon
+      MONGO_INITDB_ROOT_PASSWORD: emangiyajhon
+      MONGO_INITDB_DATABASW: admin
