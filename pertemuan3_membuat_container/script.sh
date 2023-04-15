@@ -13,7 +13,7 @@ docker compose ps
 # Untuk menghentikan container-container yang dibuat menggunakna docker compose (container yg running)
 docker compose stop
 
-# Untuk mengahapus setiap container, volume & network yang ada di dalam docker compose config (jika container nya mati, akan di stop secara otomatis & akan langsung di remove)
+# Untuk mengahapus setiap containe & network yang ada di dalam docker compose config (jika container nya mati, akan di stop secara otomatis & akan langsung di remove)
 docker compose down
 
 # Untuk menampilkan project yang ada dalam docker compose (yg sedang running)
