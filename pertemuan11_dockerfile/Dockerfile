@@ -2,7 +2,8 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-ENV PORT=8000
+ARG PORT_ARG=3000
+ENV PORT=${PORT_ARG}
 
 RUN mkdir src
 

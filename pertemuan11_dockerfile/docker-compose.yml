@@ -3,6 +3,7 @@ version: "3.8"
 services:
   express-app:
    container_name: express-app
+   # akan di create image dengan nama be:1.0.0 (bkn pull dari docker registry) karena kita define attribute build
    image: be:1.0.0
    # Mendefinsikan dockerfile untuk membuild mage
    build:
@@ -10,7 +11,10 @@ services:
     context: ./
     # nama file dari dockerfile
     dockerfile: Dockerfile
-   environment: 
-    PORT: 8000
+    # Mendifinisikan argument saat build image (--build-arg)
+    args: 
+     PORT_ARG: 7000
    ports: 
-    - 9000:8000
+    - protocol: tcp
+      published: 5005
+      target: 7000
