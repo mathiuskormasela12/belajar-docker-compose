@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  express-app:
+   container_name: express-app
+   image: be:1.0.0
+   # Mendefinsikan dockerfile untuk membuild mage
+   build:
+    # path dri dockerfile nya
+    context: ./
+    # nama file dari dockerfile
+    dockerfile: Dockerfile
+   environment: 
+    PORT: 8000
+   ports: 
+    - 9000:8000
