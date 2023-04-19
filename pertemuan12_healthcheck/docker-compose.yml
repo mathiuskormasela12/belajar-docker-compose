@@ -1,0 +1,30 @@
+version: "3.8"
+
+networks:
+  node_app_network:
+    name: node_app_network
+    driver: bridge
+
+services:
+  node_app:
+    container_name: node_app
+    image: node_app_image:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - PORT=7000
+    networks:
+      - node_app_network
+    ports:
+      - protocol: tcp
+        published: 4000
+        target: 7000
+    # Implement the healthcheck
+    healthcheck:
+      test: curl http:localhost:4000/test
+      timeout: 5s
+      interval: 5s
+      retries: 5
+      start_period: 2s
+    
