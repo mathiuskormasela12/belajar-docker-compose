@@ -1,0 +1,7 @@
+version: "3.8"
+
+# Mendifiniiakan extend service
+services:
+  node_api:
+    environment:
+      - NODE_ENV=this is production

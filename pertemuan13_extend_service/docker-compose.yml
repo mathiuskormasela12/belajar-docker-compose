@@ -1,0 +1,22 @@
+version: "3.8"
+
+networks:
+  node_api_network:
+    name: node_api_network
+    driver: bridge
+
+services:
+  node_api:
+    container_name: node_api
+    image: node_api_img:1.0.0
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - PORT=9000
+    ports:
+      - protocol: tcp
+        published: 9001
+        target: 9000
+    networks: 
+      - node_api_network
